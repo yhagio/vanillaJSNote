@@ -15,6 +15,13 @@ li:hover {
   margin: auto;
 }
 
+.button-warning {
+  font-size: 85%;
+  color: white;
+  border-radius: 4px;
+  background: rgb(223, 117, 20);
+}
+
 /* Form */
 .noteForm {
   box-sizing: border-box;

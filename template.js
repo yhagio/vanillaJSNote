@@ -9,10 +9,11 @@
         '</li>';
 
     this.singleNoteTemplate
-      = '<div class="">' +
+      = '<div id="{id}" class="">' +
           '<h3>{title}</h3>' +
           '<p class="">{body}</p>' +
           '<p>{date}</p>' +
+          '<button class="pure-button button-warning">DELETE</button>' +
         '</div>';
   }
 
@@ -32,8 +33,9 @@
 
   Template.prototype.displaySingleNote = function(note) {
     var view = '';
-    var singleNote = this.singleNoteTemplate;
+    var singleNote = this.singleNoteTemplate; 
 
+    singleNote = singleNote.replace('{id}', note.id);
     singleNote = singleNote.replace('{title}', note.title);
     singleNote = singleNote.replace('{body}', note.body);
     singleNote = singleNote.replace('{date}', note.date);

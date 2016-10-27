@@ -25,7 +25,15 @@
   }
 
   View.prototype.displaySingleNote = function(note) {
+    var self = this;
     this.currentNote.innerHTML = this.template.displaySingleNote(note[0]);
+
+    // Delete note Eventlistener
+    this.currentNote.getElementsByTagName('button')[0].addEventListener('click', function(e) {
+      self.model.deleteNote(self.model.currentNoteId);
+      self.displayNotes(self.model.notes);
+      self.displaySingleNote([self.model.notes[0]]);
+    });
   }
   
   // Export to window

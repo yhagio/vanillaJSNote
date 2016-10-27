@@ -57,17 +57,17 @@
     return item;
   };
 
-  NoteModel.prototype.editNote = function(id, newBody) {
-    var theNote;
-    this.notes.forEach(function(note) {
-      if (note.id === id) {
-        note = newBody;
-        theNote= note;
-        return;
-      }
-    });
-    return theNote;
-  };
+  // NoteModel.prototype.editNote = function(id, newBody) {
+  //   var theNote;
+  //   this.notes.forEach(function(note) {
+  //     if (note.id === id) {
+  //       note = newBody;
+  //       theNote= note;
+  //       return;
+  //     }
+  //   });
+  //   return theNote;
+  // };
 
   NoteModel.prototype.deleteNote = function(id) {
     var theIndex;
