@@ -14,14 +14,6 @@
     var self = this;
     this.noteList.innerHTML = this.template.displayNotes(notes);
 
-    // var listItems = this.noteList.getElementsByTagName('li');
-    // for(var i = 0; listItems.length > i; i++) {
-    //   listItems[i].addEventListener('click', function(e) {
-    //     self.controller.setCurrentNoteId(parseInt(this.id, 10));
-    //     self.view.displaySingleNote(self.controller.getNote(self.controller.getCurrentNoteId()));
-    //   });
-    // }
-
     // Add click Eventlistener to each note item
     var listItems = this.noteList.getElementsByTagName('li');
     for(var i = 0; listItems.length > i; i++) {
