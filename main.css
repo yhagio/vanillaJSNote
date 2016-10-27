@@ -1,0 +1,63 @@
+body {
+  box-sizing: border-box;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+.container {
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  max-width: 600px;
+  min-width: 600px;
+  margin: auto;
+}
+
+/* Form */
+.noteForm {
+  box-sizing: border-box;
+  padding: 0 18px 0 10px;
+  position: fixed;
+  top: 0px;
+  width: inherit;
+  max-width: inherit;
+  min-width: 600px;
+  z-index: 1000;
+}
+
+.inputArea {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.addButton {
+  float: right;
+}
+
+/* Note List */
+.noteArea {
+  box-sizing: border-box;
+  margin-top: 230px;
+  overflow-y: scroll;
+  height: 430px;
+  padding: 10px;
+  width: 30%;
+  display: inline-block;
+}
+
+.listItem {
+  height: auto;
+  box-shadow: 0 5px 5px #aaa;
+  padding: 10px;
+}
+
+/* Current Note */
+.currentNote {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 65%;
+  margin-top: 230px;
+  vertical-align: top;
+}

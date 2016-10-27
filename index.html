@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Yuichi Hagio">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="main.css" media="screen">
+    <title>Note</title>
+  </head>
+  <body>
+    <div id="app" class="container">
+
+      <form id="addNewNote" action="#" class="pure-form noteForm">
+        <h1>Note</h1>
+        <fieldset>
+          <input
+            type="text"
+            id="inputTitle"
+            name="inputTitle"
+            class="inputArea"
+            placeholder="Title..."
+            autofocus>
+          <textarea 
+            type="text"
+            id="inputBody"
+            name="inputBody"
+            class="inputArea"
+            placeholder="Note..."></textarea>
+          <br />
+          <button 
+            type="submit"
+            id="submitNote"
+            class="pure-button pure-button-primary addButton">Add Note</button>
+        </fieldset>
+      </form>
+
+      <ul id="noteList" class="pure-menu-list noteArea">
+      </ul>
+
+      <div id="currentNote" class="currentNote">
+      </div>
+    </div>
+    
+    <script src="helpers.js"></script>
+    <script src="template.js"></script>
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script src="controller.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
