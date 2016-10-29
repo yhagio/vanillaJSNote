@@ -57,6 +57,10 @@
     return item;
   };
 
+  NoteModel.prototype.getFirstNote = function() {
+    return this.notes[0] || {};
+  }
+
   // NoteModel.prototype.editNote = function(id, newBody) {
   //   var theNote;
   //   this.notes.forEach(function(note) {
