@@ -13,8 +13,22 @@
           '<h3>{title}</h3>' +
           '<p class="">{body}</p>' +
           '<p>{date}</p>' +
-          '<button class="pure-button button-warning">DELETE</button>' +
-        '</div>';
+          '<button class="pure-button button-sub button-warning btn-right-space">EDIT</button>' +
+          '<button class="pure-button button-sub button-error">DELETE</button>' +
+        '</div>' +
+        '<div id="updateFormArea"></div>';
+
+    this.updateNoteForm
+      = '<form id="updateNote" action="#" class="pure-form">' +
+          '<h1>Edit Note</h1>' +
+          '<fieldset>' +
+            '<input type="hidden" name="noteId" value={noteId}>' +
+            '<input type="text" id="updateTitle" name="updateTitle" class="inputArea" placeholder="Title..." value="{title}" autofocus>' +
+            '<textarea type="text" id="updateBody" name="updateBody" class="inputArea" placeholder="Note...">{body}</textarea>' +
+            '<br />' +
+            '<button type="submit" id="updateNote" class="pure-button pure-button-primary addButton">Update</button>' +
+          '</fieldset>' +
+        '</form>';
   }
 
   Template.prototype.displayNotes = function(notes) {
@@ -43,7 +57,20 @@
     view += singleNote;
 
     return view;
-  } 
+  }
+
+  Template.prototype.displayUpdateNoteForm = function(note) {
+    var view = '';
+    var updateForm = this.updateNoteForm; 
+
+    updateForm = updateForm.replace('{noteId}', note.id);
+    updateForm = updateForm.replace('{title}', note.title);
+    updateForm = updateForm.replace('{body}', note.body);
+
+    view += updateForm;
+
+    return view;
+  }
   
   // Export to window
   window.app = app || {};

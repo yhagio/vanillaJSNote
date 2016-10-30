@@ -6,21 +6,8 @@
     self.model = model;
     self.view = view;
 
-    // Add Eventlistener to form
-    self.view.addNoteForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      if (!e.target.inputTitle.value || !e.target.inputBody.value) {
-        alert('Missing input');
-      } else {
-        self.model.addNote(e.target.inputTitle.value, e.target.inputBody.value);
-        self.displayNotes(self.model.getAllNotes());
-
-        document.getElementById('inputTitle').value = '';
-        document.getElementById('inputBody').value = '';
-      }
-    });
-
     // Display all notes
+    self.setEventListenerToNoteForm();
     self.displayNotes(self.model.getAllNotes());
     self.displaySingleNote(self.model.getNote(self.model.currentNoteId));
   }
@@ -46,6 +33,49 @@
     this.model.deleteNote(id);
   }
 
+  Controller.prototype.showUpdateNoteForm = function(id) {
+    var note = this.getSingleNote(id);
+    // display edit form
+    var self = this;
+    self.view.displayUpdateForm(note[0]);
+    // add event listner to hook up method from model .updateNote()
+    self.view.updateForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var newNote = {};
+      if (!e.target.updateTitle.value || !e.target.updateBody.value) {
+        alert('Missing inputs!');
+      } else {
+        newNote.title = e.target.updateTitle.value;
+        newNote.body = e.target.updateBody.value;
+
+        self.model.updateNote(e.target.noteId.value, newNote);
+        self.displayNotes(self.model.getAllNotes());
+
+        var currentNote = self.getSingleNote(parseInt(e.target.noteId.value, 10));
+        self.displaySingleNote(currentNote || self.getFirstNote());
+        self.view.updateForm.innerHTML = '';
+      }
+    })
+  };
+
+  Controller.prototype.setEventListenerToNoteForm = function() {
+    // Add Eventlistener to form
+    var self = this;
+
+    self.view.addNoteForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!e.target.inputTitle.value || !e.target.inputBody.value) {
+        alert('Missing input');
+      } else {
+        self.model.addNote(e.target.inputTitle.value, e.target.inputBody.value);
+        self.displayNotes(self.model.getAllNotes());
+
+        document.getElementById('inputTitle').value = '';
+        document.getElementById('inputBody').value = '';
+      }
+    });
+  }
+
   Controller.prototype.displayNotes = function(notes) {
     var self = this;
     // Display the note list in the DOM
@@ -65,17 +95,21 @@
   }
 
   Controller.prototype.displaySingleNote = function(note) {
-    console.log('note', note);
     var self = this;
     self.view.currentNote.innerHTML
        = self.view.template.displaySingleNote(note[0] || self.getFirstNote());
 
+    // Display update form
+    self.view.currentNote.getElementsByTagName('button')[0]
+      .addEventListener('click', function(e) {
+        self.showUpdateNoteForm(self.model.currentNoteId);
+      });
+
     // Delete note Eventlistener
     // Clicking a note's delete button will delete the note
     // and re-render notes and the single note as well
-    self.view.currentNote.getElementsByTagName('button')[0]
+    self.view.currentNote.getElementsByTagName('button')[1]
       .addEventListener('click', function(e) {
-
         self.deleteNote(self.model.currentNoteId);
         self.displayNotes(self.getAllNotes());
         self.displaySingleNote(self.getFirstNote());

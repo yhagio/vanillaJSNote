@@ -61,17 +61,20 @@
     return this.notes[0] || {};
   }
 
-  // NoteModel.prototype.editNote = function(id, newBody) {
-  //   var theNote;
-  //   this.notes.forEach(function(note) {
-  //     if (note.id === id) {
-  //       note = newBody;
-  //       theNote= note;
-  //       return;
-  //     }
-  //   });
-  //   return theNote;
-  // };
+  NoteModel.prototype.updateNote = function(id, newNoteObj) {
+    
+    var theNote;
+    this.notes.forEach(function(note) {
+      if (note.id === parseInt(id, 10)) {
+        note.title = newNoteObj.title || note.title;
+        note.body = newNoteObj.body || note.body;
+        // note.date = newNoteObj.date || note.date;
+        theNote = note;
+        return;
+      }
+    });
+    return theNote;
+  };
 
   NoteModel.prototype.deleteNote = function(id) {
     var theIndex;

@@ -15,11 +15,22 @@ li:hover {
   margin: auto;
 }
 
-.button-warning {
+.button-sub {
   font-size: 85%;
   color: white;
   border-radius: 4px;
+}
+
+.button-warning {
   background: rgb(223, 117, 20);
+}
+
+.button-error {
+  background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.btn-right-space {
+  margin-right: 10px;
 }
 
 /* Form */
