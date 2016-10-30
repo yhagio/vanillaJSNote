@@ -33,6 +33,7 @@
     this.model.deleteNote(id);
   }
 
+  // Update an existing note
   Controller.prototype.showUpdateNoteForm = function(id) {
     var note = this.getSingleNote(id);
     // display edit form
@@ -58,6 +59,7 @@
     })
   };
 
+  // Create a new note
   Controller.prototype.setEventListenerToNoteForm = function() {
     // Add Eventlistener to form
     var self = this;
@@ -70,6 +72,7 @@
         self.model.addNote(e.target.inputTitle.value, e.target.inputBody.value);
         self.displayNotes(self.model.getAllNotes());
 
+        self.displaySingleNote(self.getSingleNote(self.model.currentNoteId) || self.getFirstNote())
         document.getElementById('inputTitle').value = '';
         document.getElementById('inputBody').value = '';
       }
@@ -96,8 +99,14 @@
 
   Controller.prototype.displaySingleNote = function(note) {
     var self = this;
+    var noteToDisplay = note[0] || self.getFirstNote();
+
+    if (noteToDisplay.id === undefined) {
+      self.view.currentNote.innerHTML = '';
+      return;
+    }
     self.view.currentNote.innerHTML
-       = self.view.template.displaySingleNote(note[0] || self.getFirstNote());
+       = self.view.template.displaySingleNote(noteToDisplay);
 
     // Display update form
     self.view.currentNote.getElementsByTagName('button')[0]
