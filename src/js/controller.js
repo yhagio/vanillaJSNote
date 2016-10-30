@@ -112,7 +112,12 @@
       .addEventListener('click', function(e) {
         self.deleteNote(self.model.currentNoteId);
         self.displayNotes(self.getAllNotes());
+
+        // displayy the first note in the list
         self.displaySingleNote(self.getFirstNote());
+        
+        // set currentNoteId to the first note in the list
+        self.model.currentNoteId = self.getFirstNote().id;
       });
   }
 
